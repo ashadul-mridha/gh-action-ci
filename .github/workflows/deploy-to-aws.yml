@@ -1,4 +1,4 @@
-name: Code Auto Deploy to aws
+name: Code Auto Deploy to AWS
 
 on:
   push:
@@ -10,22 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      -name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      -name: Deploy to AWS
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.AWS_HOST }}
-        username: ${{ secrets.AWS_USERNAME }}
-        key: ${{ secrets.AWS_PRIVATE_KEY }}
-        port: ${{ secrets.AWS_PORT }}
-        script: |
-          cd ~/gh-action-ci/
-          git stash
-          git pull origin main --no-ff
-          yarn install
-          pm2 stop gh-action-ci
-          pm2 delete gh-action-ci
-          pm2 start "yarn start" --name gh-action-ci
-
+      - name: Deploy to AWS
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USERNAME }}
+          key: ${{ secrets.AWS_PRIVATE_KEY }}
+          port: ${{ secrets.AWS_PORT }}
+          script: |
+            cd ~/gh-action-ci/
+            git stash
+            git pull origin main --no-ff
+            yarn install
+            pm2 stop gh-action-ci
+            pm2 delete gh-action-ci
+            pm2 start "yarn start" --name gh-action-ci
