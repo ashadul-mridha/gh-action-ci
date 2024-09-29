@@ -24,7 +24,7 @@ jobs:
             cd gh-action-ci/
             git stash
             git pull origin main --no-ff
-            yarn install
+            # yarn install
             # pm2 stop gh-action-ci
             # pm2 delete gh-action-ci
             # pm2 start "yarn start" --name gh-action-ci
