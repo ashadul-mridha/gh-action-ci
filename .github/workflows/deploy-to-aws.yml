@@ -21,7 +21,7 @@ jobs:
           key: ${{ secrets.AWS_PRIVATE_KEY }}
           port: ${{ secrets.AWS_PORT }}
           script: |
-            cd ~/gh-action-ci/
+            cd /var/www/gh-action-ci/
             git stash
             git pull origin main --no-ff
             yarn install
